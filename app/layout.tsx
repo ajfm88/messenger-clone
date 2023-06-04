@@ -1,12 +1,12 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
+import AuthContext from './context/AuthContext';
+import ActiveStatus from './components/ActiveStatus';
+import ToasterContext from './context/ToasterContext';
 
 export const metadata = {
   title: 'Messenger',
   description:
-    '💬 Messenger clone created by ajfm88 using Next.js 13, Tailwind CSS and TypeScript. 👥',
+    '🗨️ Messenger clone created by ajfm88 using Next.js 13, Tailwind CSS and TypeScript. 🗣',
 };
 
 export default function RootLayout({
@@ -16,7 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body>
+        <AuthContext>
+          <ToasterContext />
+          <ActiveStatus />
+          {children}
+        </AuthContext>
+      </body>
     </html>
   );
 }
